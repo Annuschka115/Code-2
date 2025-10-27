@@ -38,11 +38,12 @@
 
         // }
         // }
-
+        
         for (let i:number = 0; i <= 22; i++) {
             
 console.log("Schleife laufen");
     getRandomColor();
+    
 
 
             function getRandomColor(): string {
@@ -52,7 +53,10 @@ console.log("Schleife laufen");
             let color : string = "#";
             for (let i : number = 0; i < 6; i++) {
                 color += letters[Math.floor(Math.random() * 16)];
+                
             }
+            crc2.fillStyle = color;
+            crc2.fillRect(0,0,crc2.canvas.width,crc2.canvas.height);
             console.log(color);
                     return color;
         

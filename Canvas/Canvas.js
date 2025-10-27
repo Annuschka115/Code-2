@@ -37,6 +37,8 @@ function onLoadHandler() {
             for (let i = 0; i < 6; i++) {
                 color += letters[Math.floor(Math.random() * 16)];
             }
+            crc2.fillStyle = color;
+            crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
             console.log(color);
             return color;
         }

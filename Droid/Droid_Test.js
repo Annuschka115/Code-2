@@ -1,4 +1,7 @@
-export var Droid;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Droid = void 0;
+var Droid;
 (function (Droid) {
     // let counter: boolean;
     // counter = true;
@@ -42,4 +45,5 @@ export var Droid;
         return command;
     }
     Droid.getCommand = getCommand;
-})(Droid || (Droid = {}));
+})(Droid || (exports.Droid = Droid = {}));
+//# sourceMappingURL=Droid_Test.js.map
