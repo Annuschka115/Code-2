@@ -26,4 +26,3 @@ var Asteroid;
     }
     Asteroid.Vector = Vector;
 })(Asteroid || (Asteroid = {}));
-//# sourceMappingURL=Vector.js.map

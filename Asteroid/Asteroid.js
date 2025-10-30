@@ -7,13 +7,35 @@ var Asteroid;
             this.position = new Asteroid_1.Vector(0, 0);
             this.velocity = new Asteroid_1.Vector(0, 0);
             this.velocity.random(100, 200);
+            this.type = Math.floor(Math.random() * 4);
+            this.size = _size;
         }
-        moveBy(_timeslice) {
+        move(_timeslice) {
             console.log("Asteroid Move");
+            let offset = new Asteroid_1.Vector(this.velocity.x, this.velocity.y);
+            offset.scale(_timeslice);
+            this.position.add(offset);
+            if (_this.position.x <= 0)
+                this.position.x += Asteroid_1.crc2.canvas.width;
+            if (_this.position.y < 0)
+                this.position.y += Asteroid_1.crc2.canvas.height;
+            if (this.position.x > Asteroid_1.crc2.canvas.width)
+                ;
+            this.position.x -= Asteroid_1.crc2.canvas.width;
+            if (this.position.y > Asteroid_1.crc2.canvas.height)
+                ;
+            this.position.y -= Asteroid_1.crc2.canvas.height;
         }
         draw() {
-            console.log("Asteroid darw");
+            console.log("Asteroid draw");
+            Asteroid_1.crc2.save();
+            Asteroid_1.crc2.translate(this.position.x, this.position.y);
+            Asteroid_1.crc2.scale(this.size, this.size);
+            Asteroid_1.crc2.translate(-50, -50);
+            Asteroid_1.crc2.stroke(Asteroid_1.asteroidPaths[this.type]);
+            Asteroid_1.crc2.restore();
         }
     }
     Asteroid_1.Asteroid = Asteroid;
 })(Asteroid || (Asteroid = {}));
+//# sourceMappingURL=Asteroid.js.map
