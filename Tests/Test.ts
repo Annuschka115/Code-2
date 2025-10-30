@@ -31,15 +31,15 @@ namespace HUH {
 // console.log(v1);
 
 
-enum Animals {
-    CAT,
-    DOG,
-    COW,
-    PIG,
-    CHICKEN
-}
+// enum Animals {
+//     CAT,
+//     DOG,
+//     COW,
+//     PIG,
+//     CHICKEN
+// }
 
-class 
+
 
 
 

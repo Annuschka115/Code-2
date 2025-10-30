@@ -47,3 +47,4 @@ function onLoadHandler() {
     // }
 }
 // }
+//# sourceMappingURL=Canvas.js.map
