@@ -59,3 +59,4 @@ var Asteroid;
         return path;
     }
 })(Asteroid || (Asteroid = {}));
+//# sourceMappingURL=Paths.js.map

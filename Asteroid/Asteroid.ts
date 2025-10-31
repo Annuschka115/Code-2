@@ -1,9 +1,9 @@
 namespace Asteroid {
    export class Asteroid {
-position: Vector;
-velocity: Vector;
-type: number;
-size: number;
+        position: Vector;
+        velocity: Vector;
+        type: number;
+        size: number;
 
 constructor(_size: number) {
      console.log("Asteroid constructor");
@@ -16,22 +16,22 @@ constructor(_size: number) {
 }
 
 move(_timeslice: number): void{
-    console.log("Asteroid Move");
-    let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
+    // console.log("Asteroid Move");
+    const offset: Vector = new Vector(this.velocity.x, this.velocity.y);
     offset.scale(_timeslice);
     this.position.add(offset);
 
-    if (_this.position.x <= 0)
+    if (this.position.x <= 0)
         this.position.x += crc2.canvas.width;
-    if (_this.position.y < 0)
+    if (this.position.y < 0)
         this.position.y += crc2.canvas.height;
-    if (this.position.x > crc2.canvas.width);
+    if (this.position.x > crc2.canvas.width)
         this.position.x -= crc2.canvas.width;
-    if (this.position.y > crc2.canvas.height);
+    if (this.position.y > crc2.canvas.height)
         this.position.y -= crc2.canvas.height;
 }
 draw(): void {
-    console.log("Asteroid draw");
+    // console.log("Asteroid draw");
     crc2.save();
     crc2.translate(this.position.x, this.position.y);
     crc2.scale(this.size, this.size);
@@ -40,6 +40,11 @@ draw(): void {
     crc2.restore();
 }
 
+isHit(_hotspot: Vector): boolean {
+    const hitsize: number = 50 * this.size;
+    const difference: Vector = new Vector( _hotspot.x - this.position.x, _hotspot.y - this.position.y);
+    return (Math.abs(difference.x) < hitsize && Math.abs(difference.y) < hitsize);
+}
  }
 
 

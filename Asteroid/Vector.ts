@@ -1,7 +1,7 @@
 namespace Asteroid {
     export class Vector {
-        x: number;
-        y: number;
+        x!: number;
+        y!: number;
 
         constructor(_x: number, _y: number){
             this.set(_x, _y);

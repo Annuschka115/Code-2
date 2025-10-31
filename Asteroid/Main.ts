@@ -12,37 +12,30 @@ namespace Asteroid {
             return;
         crc2 = <CanvasRenderingContext2D>canvas.getContext("2d");
         crc2.fillStyle = "black";
-        crc2.strokeStyle = "red";
+        crc2.strokeStyle = "#63d7e6ff";
         crc2.fillRect(0,0, crc2.canvas.width, crc2.canvas.width);
 
         createPaths();
         console.log("Asteroids paths: ", asteroidPaths);
 
+        createAsteroids(5);
+        //createShip();
+
         const asteroid: Asteroid = new Asteroid(1);
         console.log(asteroid);
+        for (let i: number = 0; i < 100; i++){
+        crc2.fillRect (0, 0, crc2.canvas.width, crc2.canvas.width)
         asteroid.draw();
-        asteroid.move(0,1);
-        asteroid.draw();
-        asteroid.move(0,1);
-        asteroid.draw();
-        asteroid.move(0,1);
-        asteroid.draw();
-        asteroid.move(0,1);
-        asteroid.draw();
-        asteroid.move(0,1);
-        asteroid.draw();
-        asteroid.move(0,1);
-
-
-        createAsteroids(5);
-        // createShip();
+        asteroid.move(0.1);
+        }
+    
 
         // canvas.addEventListener("mousedown", loadLaser);
         canvas.addEventListener("mouseup", shootLaser);
         // canvas.addEventListener("keypress", handleKeypress);
         // canvas.addEventListener("mousemove", setHeading);
  
-        // window.setInterval(update, 20);
+        window.setInterval(update, 20);
     }
 
     function shootLaser(_event: MouseEvent): void {
@@ -54,25 +47,26 @@ namespace Asteroid {
             breakAsteroid(asteroidHit);
     }
 
-    // function getAsteroiHit(_hotspot: Vector): Asteroid | null {
-    //     for (let asteroid of asteroids) {
-    //         if (asteroid.isHit(_hotspot))
-    //             return asteroid;
-    //     }
-    //     return null;
-    // }
+    function getAsteroidHit(_hotspot: Vector): Asteroid | null {
+        for (let asteroid of asteroids) {
+            if (asteroid.isHit(_hotspot))
+                return asteroid;
+        }
+        return null;
+    }
 
-    // function breakAsteroid(_asteroid: Asteroid): void {
-    //     if (_asteroid.size > 0.3) {
-    //         for (let i: number = 0; i < 2; i++) {
-    //             let fragment: Asteroid = new Asteroid(_asteroid.size / 2, _asteroid.position);
-    //             fragment.velocity.add(_asteroid.velocity);
-    //             asteroids.push(fragment);
-    //         }
-    //     }
+    function breakAsteroid(_asteroid: Asteroid): void {
+        if (_asteroid.size > 0.3) {
+            for (let i: number = 0; i < 2; i++) {
+                let fragment: Asteroid = new Asteroid(_asteroid.size / 2, _asteroid.position);
+                fragment.velocity.add(_asteroid.velocity);
+                asteroids.push(fragment);
+            }
+        }
+  
     //     let index: number = asteroids.indexOf(_asteroid);
     //     asteroids.splice(index, 1);
-    // }
+    }
 
     function createAsteroids(_nAsteroids: number): void {
         console.log("Create asteroids");
@@ -82,17 +76,17 @@ namespace Asteroid {
         }
     }
 
-    // function update(): void {
-    //     console.log("Update");
-    //     crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
+    function update(): void {
+        console.log("Update");
+        crc2.fillRect(0, 0, crc2.canvas.width, crc2.canvas.height);
 
-    //     for (let asteroid of asteroids) {
-    //         asteroid.move(1 / 50);
-    //         asteroid.draw();
-    //     }
+        for (let asteroid of asteroids) {
+            asteroid.move(1 / 50);
+            asteroid.draw();
+        }
 
     //     // ship.draw();
     //     // handleCollisions();
-    // }
+    }
 
-}
+    }
