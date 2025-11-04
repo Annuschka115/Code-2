@@ -1,48 +1,67 @@
-namespace HUH {
+namespace Scope {
+    class ScopeSuper {
+        static x: string = "ScopeSuperStatic";             // Scope of superclass
+        protected x: string = "ScopeSuperObject";                    // Scope of superobject
 
-// class Vector {
-// x: number = 2;
-// y: number = 4 ;
+        log(): void {
+            console.group("Super");
+            let x: string = "ScopeSuperMethod";
+            log("ScopeSuperMethod", x);
+            log("ScopeSuperObject", this.x);
+            console.groupEnd();
+        }
+    }
 
-// constructor (_x:number , _y:number) {
-//     this.set(_x , _y);
-// }
-//     set (_x: number, _y:number ): void{
-//         this.x = _x;
-//         this.y = _y; 
-//     }
-//     scale(_factor: number): void {
-//         this.x *= _factor;
-//         this.y *= _factor;
-//     }
+    class ScopeSub extends ScopeSuper {
+       private static x: string = "ScopeSubStatic";               // Scope of subclass
+        protected x: string = "ScopeSubObject";                      // Scope of subobject
 
-//     add(_addend: Vector): void {
-//         this.x += _addend.x;
-//         this.y += _addend.y;
+        log(): void {
+            console.group("Sub");
+            let x: string = "ScopeSubMethod";              // Scope of method
+            {
+                let x: string = "ScopeSubMethodBlock";     // Scope of block
+                log("ScopeSubMethodBlock", x);
+                log("ScopeSubObject", this.x);
+                // log("ScopeSuperObject", super.x);
+                super.log();
+            }
+            log("ScopeSubMethod", x);
+            console.groupEnd();
+        }
+    }
 
-//     }
-  
-// }
+    let x: string = "Scope";                               // Scope of namespace
+    let sub: ScopeSub = new ScopeSub();
+    let sup: ScopeSuper = new ScopeSuper();
 
+    sub.log();
+    sup.log();
 
-// const v1: Vector = new Vector( 3, 6);
-// // v1.set(0,0);
-// v1.scale(2);
-// console.log(v1);
+    console.group("Scope");
+    log("Scope", x);
+    log("ScopeSuperStatic", ScopeSuper.x);
+    log("ScopeSubStatic", ScopeSub.x);
+    console.groupEnd();
 
+    console.group("Method");
+    method();
+    console.groupEnd();
 
-// enum Animals {
-//     CAT,
-//     DOG,
-//     COW,
-//     PIG,
-//     CHICKEN
-// }
+    function method(): void {
+        let x: string = "ScopeMethod";
+        log("ScopeMethod", x);
+    }
 
-
-
-
-
-
-
+    export function log(_expected: string, _is: string): void {
+        if (_expected == _is)
+            console.log(_expected, " == ", _is);
+        else
+            console.warn(_expected, " != ", _is);
+    }
 }
+
+console.group("File");
+let x: string = "File";                                 // Scope of file
+Scope.log("File", x);
+console.groupEnd();
