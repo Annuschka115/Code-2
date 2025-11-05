@@ -2,8 +2,6 @@
 var Asteroid;
 (function (Asteroid) {
     class Vector {
-        x;
-        y;
         constructor(_x, _y) {
             this.set(_x, _y);
         }

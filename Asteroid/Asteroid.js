@@ -2,10 +2,6 @@
 var Asteroid;
 (function (Asteroid_1) {
     class Asteroid {
-        position;
-        velocity;
-        type;
-        size;
         constructor(_size) {
             console.log("Asteroid constructor");
             this.position = new Asteroid_1.Vector(0, 0);
